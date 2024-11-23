@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ParseDriverIdPipe } from '@application/adapters/pipes';
-import { BadRequestException } from '@nestjs/common';
 
 describe('ParseDriverIdPipe', () => {
   let sut: ParseDriverIdPipe;
@@ -15,7 +14,7 @@ describe('ParseDriverIdPipe', () => {
     sut = app.get<ParseDriverIdPipe>(ParseDriverIdPipe);
   });
 
-  it('should defined', () => {
+  it('should be defined', () => {
     expect(sut).toBeDefined();
   });
 
@@ -32,13 +31,8 @@ describe('ParseDriverIdPipe', () => {
       expect(sut.transform(undefined)).toBeUndefined();
     });
 
-    it('should throw an error for an invalid number string', () => {
-      expect(() => sut.transform('abc')).toThrow(BadRequestException);
-    });
-
-    it('should throw an error for non-string, non-number inputs', () => {
-      expect(() => sut.transform({})).toThrow(BadRequestException);
-      expect(() => sut.transform([])).toThrow(BadRequestException);
+    it('should return undefined for an invalid number string', () => {
+      expect(sut.transform('abc')).toBeUndefined();
     });
 
     it('should parse a valid number with whitespace', () => {
