@@ -2,10 +2,11 @@ import { Body, Controller, Post } from '@nestjs/common';
 
 import { RideEstimateUseCase } from '@domain/usecases';
 import {
-  RideEstimateRequestDto,
-  RideEstimateResponseDto,
-} from '@infrastructure/http/presenters/controllers/rides/ride-estimate/dtos';
+  RideEstimateViewModel,
+  RideEstimateViewModelResponse,
+} from '@infrastructure/http/presenters/view-models';
 import { ApiPath } from '@infrastructure/http/presenters/controllers/constants';
+import { RideEstimateRequestDto } from '@infrastructure/http/presenters/controllers/rides/ride-estimate/dtos';
 
 @Controller(ApiPath)
 export class RideEstimateController {
@@ -14,9 +15,9 @@ export class RideEstimateController {
   @Post('estimate')
   public async estimateRide(
     @Body() dto: RideEstimateRequestDto,
-  ): Promise<RideEstimateResponseDto> {
-    const user = await this.rideEstimateUseCase.execute(dto);
+  ): Promise<RideEstimateViewModelResponse> {
+    const rideEstimate = await this.rideEstimateUseCase.execute(dto);
 
-    return user;
+    return RideEstimateViewModel.toHTTP(rideEstimate);
   }
 }
