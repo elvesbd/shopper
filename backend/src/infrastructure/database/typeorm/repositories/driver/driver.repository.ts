@@ -44,7 +44,7 @@ export class TypeORMDriverRepository implements DriverRepository {
           'Serviço impecável! O motorista é a própria definição de classe e o carro é simplesmente magnífico. Uma experiência digna de um agente secreto.',
       },
       pricePerKm: 1000, // em centavos
-      minimumMeters: 10000, // 10 km em metros
+      minimumMeters: 200, // 10 km em metros
     },
   ];
 
