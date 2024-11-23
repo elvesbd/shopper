@@ -1,10 +1,16 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { HttpModule } from './infrastructure/http';
 import { DatabaseModule } from './infrastructure/database';
 import { GoogleModule } from './infrastructure/external-services/google/google.module';
-import { HttpModule } from './infrastructure/http';
 
 @Module({
-  imports: [DatabaseModule, GoogleModule, HttpModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    DatabaseModule,
+    GoogleModule,
+    HttpModule,
+  ],
   controllers: [],
   providers: [],
 })
