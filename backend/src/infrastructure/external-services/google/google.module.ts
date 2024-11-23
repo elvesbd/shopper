@@ -1,13 +1,18 @@
 import { Module } from '@nestjs/common';
+import { HttpModule } from '@nestjs/axios';
 
 import { RoutesServices } from '@domain/ports/routes';
 import { GeolocationService } from '@domain/ports/geolocation';
-import { GoogleRoutesService } from './services/routes.service';
-import { GoogleGeolocationService } from './services/geolocation.service';
+import {
+  GoogleRoutesService,
+  GoogleGeolocationService,
+} from '@infrastructure/external-services/google/services';
+import { HttpService } from '@infrastructure/external-services/http-service';
 
 @Module({
-  imports: [],
+  imports: [HttpModule],
   providers: [
+    HttpService,
     {
       provide: RoutesServices,
       useClass: GoogleRoutesService,
