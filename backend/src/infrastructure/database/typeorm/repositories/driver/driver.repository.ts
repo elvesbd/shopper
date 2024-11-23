@@ -16,7 +16,7 @@ export class TypeORMDriverRepository implements DriverRepository {
           'Motorista simpático, mas errou o caminho 3 vezes. O carro cheira a donuts.',
       },
       pricePerKm: 250, // em centavos
-      minimumMeters: 1000, // 1 km em metros
+      minimumMeters: 200, // 1 km em metros
     },
     {
       id: 2,
