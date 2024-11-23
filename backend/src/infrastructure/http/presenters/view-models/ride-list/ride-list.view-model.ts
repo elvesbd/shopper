@@ -32,12 +32,17 @@ export class RideListViewModel {
       distance: ride.distance,
       duration: ride.duration,
       driver: ride.driver,
-      value: ride.value,
+      value: RideListViewModel.convertCentsToReais(ride.value),
     }));
 
     return {
       customer_id,
       rides: mappedRides,
     };
+  }
+
+  private static convertCentsToReais(valueInCentavos: number): number {
+    const valueInReais = valueInCentavos / 100;
+    return parseFloat(valueInReais.toFixed(2));
   }
 }
