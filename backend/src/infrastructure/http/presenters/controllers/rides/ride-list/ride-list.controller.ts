@@ -12,9 +12,10 @@ import {
   RideListViewModel,
   RideListViewModelResponse,
 } from '@infrastructure/http/presenters/view-models';
-import { ParseDriverIdPipe } from 'src/application/adapters/pipes/parser-driver-id.pipe';
+import { ParseDriverIdPipe } from '@application/adapters/pipes';
+import { ApiPath } from '@infrastructure/http/presenters/controllers/constants';
 
-@Controller('rides')
+@Controller(ApiPath)
 export class RideListController {
   constructor(private readonly rideListUseCase: RideListUseCase) {}
 
