@@ -33,6 +33,7 @@ export class RideConfirmRequestDto {
   @IsString()
   duration: string;
 
+  @IsString()
   @IsNotEmpty()
   @IsDifferentFrom('origin', {
     message: 'Os endereços de origem e destino não podem ser o mesmo endereço',
