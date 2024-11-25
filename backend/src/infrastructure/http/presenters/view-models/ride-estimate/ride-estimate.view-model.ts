@@ -65,8 +65,16 @@ export class RideEstimateViewModel {
       },
       distance: rideEstimate.distance,
       duration: rideEstimate.duration,
-      options: rideEstimate.options,
+      options: rideEstimate.options.map((option) => ({
+        ...option,
+        value: RideEstimateViewModel.convertCentsToReais(option.value),
+      })),
       routeResponse: rideEstimate.routeResponse,
     };
+  }
+
+  private static convertCentsToReais(valueInCentavos: number): number {
+    const valueInReais = valueInCentavos / 100;
+    return parseFloat(valueInReais.toFixed(2));
   }
 }

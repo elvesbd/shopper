@@ -7,11 +7,11 @@ export class RideEstimateRequestDto {
   customer_id: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'A origem não pode estar em branco' })
   origin: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'O destino não pode estar em branco' })
   @IsDifferentFrom('origin', {
     message: 'Os endereços de origem e destino não podem ser o mesmo endereço',
   })

@@ -1,29 +1,37 @@
 import { Injectable } from '@nestjs/common';
+import { Repository } from 'typeorm';
 
 import { Ride } from '@domain/entities';
+import { dataSource } from '../../datasource';
 import { RideRepository } from '@domain/ports/repository';
+import { TypeORMRideEntity } from '../../entities/rides/ride.entity';
+import { TypeORMRideMapper } from '../../mappers/ride/ride.mapper';
 
 @Injectable()
 export class TypeORMRideRepository implements RideRepository {
-  private rides: Ride[] = [];
+  private readonly repository: Repository<TypeORMRideEntity>;
 
-  async save(ride: Ride): Promise<void> {
-    this.rides.push(ride);
-    console.log('Viagem salva:', ride);
+  constructor() {
+    this.repository = dataSource.getRepository(TypeORMRideEntity);
   }
 
-  async findAll(): Promise<Ride[]> {
-    return this.rides;
+  public async save(ride: Ride): Promise<void> {
+    const newRide = TypeORMRideMapper.toPersistence(ride);
+    await this.repository.save(newRide);
   }
 
-  async findByCustomerAndDriver(
+  public async findAll(): Promise<Ride[]> {
+    const rides = await this.repository.find();
+    return TypeORMRideMapper.toDomainList(rides);
+  }
+
+  public async findByCustomerAndDriver(
     customer_id: string,
     driver_id?: number,
   ): Promise<Ride[]> {
-    return this.rides.filter(
-      (ride) =>
-        ride.customer_id === customer_id &&
-        (driver_id === undefined || ride.driver_id === driver_id),
-    );
+    const rides = await this.repository.find({
+      where: { customer_id, ...(driver_id !== undefined && { driver_id }) },
+    });
+    return TypeORMRideMapper.toDomainList(rides);
   }
 }

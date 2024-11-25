@@ -10,6 +10,7 @@ import { Response } from 'express';
 export class ValidationExceptionFilter implements ExceptionFilter {
   catch(exception: BadRequestException, host: ArgumentsHost) {
     const response = host.switchToHttp().getResponse<Response>();
+
     const responseBody = exception.getResponse();
 
     const formattedError = {
