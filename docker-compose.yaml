@@ -26,8 +26,6 @@ services:
       - POSTGRES_DB=shopper_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    env_file:
-      - ./backend/.env
 
   frontend:
     build:
@@ -37,8 +35,7 @@ services:
       - "80:80"
     environment:
       - VITE_API_URL=http://backend:8080
-    env_file:
-      - ./frontend/.env
+      - VITE_GOOGLE_API_KEY=${GOOGLE_API_KEY}
     depends_on:
       - backend
 
