@@ -5,12 +5,22 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #D3D3D3;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;   /* Ocupa toda a largura da tela */
+  height: 100%;  /* Ocupa toda a altura da tela */
+  display: flex;
+  flex-direction: column; /* Coloca os itens um abaixo do outro */
+  align-items: center;  /* Alinha tudo no centro horizontalmente */
+  background-color: #F5F5F5;
+
 }
 
 a {
