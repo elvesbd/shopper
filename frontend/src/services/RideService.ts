@@ -16,7 +16,8 @@ class RideService {
 	private readonly httpClient: HttpClient;
 
 	constructor() {
-		this.httpClient = new HttpClient("http://localhost:8080/rides");
+		const baseUrl =  import.meta.env.VITE_API_URL		
+		this.httpClient = new HttpClient(`${baseUrl}/rides`);
 	}
 
 	async list(id: string, driver_id?: number): Promise<RideDomainList> {

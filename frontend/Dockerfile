@@ -3,6 +3,15 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
+# Define variáveis de ambiente para configurar a URL da API e a chave da API do Google
+# Essas variáveis podem ser passadas ao construir a imagem
+ARG VITE_API_URL
+ARG VITE_GOOGLE_API_KEY
+
+# Atribui as variáveis de ambiente com os valores passados durante o build
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_GOOGLE_API_KEY=$VITE_GOOGLE_API_KEY
+
 # Copiar arquivos de configuração primeiro
 COPY package*.json ./
 
