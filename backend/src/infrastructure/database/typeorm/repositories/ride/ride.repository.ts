@@ -21,7 +21,9 @@ export class TypeORMRideRepository implements RideRepository {
   }
 
   public async findAll(): Promise<Ride[]> {
-    const rides = await this.repository.find();
+    const rides = await this.repository.find({
+      order: { value: 'ASC' },
+    });
     return TypeORMRideMapper.toDomainList(rides);
   }
 
