@@ -4,9 +4,7 @@ import { MapContainer, MapImage } from "./StaticMapStyled";
 function StaticMapWithRoute() {
 	const { encodedPolyline, origin, destination } = useConfirm();
 
-	const googleMapsApiKey = import.meta.env.VITE_GOOGLE_API_KEY;
-	console.log('googleMapsApiKey', googleMapsApiKey);
-	
+	const googleMapsApiKey = import.meta.env.VITE_GOOGLE_API_KEY;	
 	const encodedPath = encodeURIComponent(encodedPolyline);
 
 	const originMarker = `${origin.latitude},${origin.longitude}`;
