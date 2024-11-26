@@ -9,6 +9,7 @@ import {
 	TrHover,
 	TripsList,
 	Container,
+	NewTripButton,
 	InputContainer,
 	FilterContainer,
 } from "./ListStyled";
@@ -18,6 +19,7 @@ const List = () => {
 	const {
 		rides,
 		userId,
+		navigate,
 		applyFilter,
 		selectedDriver,
 		setSelectedDriver,
@@ -27,6 +29,10 @@ const List = () => {
 	return (
 		<Container>
 			<h2>Histórico de Viagens</h2>
+
+			<NewTripButton onClick={() => navigate("/")}>
+				Nova Viagem
+			</NewTripButton>
 
 			<FilterContainer>
 				<InputContainer>
@@ -71,11 +77,11 @@ const List = () => {
 						<tr>
 							<Th style={{ width: "15%" }}>Data e Hora</Th>
 							<Th style={{ width: "15%" }}>Motorista</Th>
-							<Th style={{ width: "20%" }}>Origem</Th>
-							<Th style={{ width: "20%" }}>Destino</Th>
-							<Th style={{ width: "10%" }}>Distância</Th>
-							<Th style={{ width: "10%" }}>Tempo</Th>
-							<Th style={{ width: "10%" }}>Valor</Th>
+							<Th style={{ width: "23%" }}>Origem</Th>
+							<Th style={{ width: "23%" }}>Destino</Th>
+							<Th style={{ width: "8%" }}>Distância</Th>
+							<Th style={{ width: "8%" }}>Tempo</Th>
+							<Th style={{ width: "8%" }}>Valor</Th>
 						</tr>
 					</thead>
 					<tbody>

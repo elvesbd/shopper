@@ -8,6 +8,7 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
+  position: relative
 `;
 
 export const FilterContainer = styled.div`
@@ -96,3 +97,20 @@ export const Button = styled.button`
     background-color: #45a049;
   }
 `;
+
+export const NewTripButton = styled.button`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 14px;
+  background: none;
+  color: #007bff;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+

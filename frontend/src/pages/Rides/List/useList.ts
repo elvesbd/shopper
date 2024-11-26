@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import RideService from "../../../services/RideService";
 import type { RideBase } from "../../../services/types/rides";
 import { handleError } from "../../../services/utils/hsndleError";
 
 const useList = () => {
+	const navigate = useNavigate();
 	const { customer_id } = useParams<{ customer_id: string }>();
 
 	const [userId, setUserId] = useState("");
@@ -55,11 +56,12 @@ const useList = () => {
 		rides,
 		userId,
 		loading,
-		selectedDriver,
+		navigate,
 		setUserId,
+		applyFilter,
+		selectedDriver,
 		setSelectedDriver,
 		handleUserIdChange,
-		applyFilter,
 	};
 };
 
