@@ -18,7 +18,6 @@ export class ValidationExceptionFilter implements ExceptionFilter {
   catch(exception: BadRequestException, host: ArgumentsHost) {
     const response = host.switchToHttp().getResponse<Response>();
     const responseBody = exception.getResponse() as CustomErrorResponse;
-    console.log(responseBody);
 
     if (responseBody.error_code) {
       return response.status(400).json(responseBody);
